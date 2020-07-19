@@ -51,6 +51,7 @@ int main(int argc, char **argv)
 	{
 		NSString *currentApp = window[(NSString *)kCGWindowOwnerName];
 		NSString *currentWindowTitle = window[(NSString *)kCGWindowName];
+		NSNumber *currentWindowLayer = window[(NSString *)kCGWindowLayer];
 		CGRect currentBounds;
 		CGRectMakeWithDictionaryRepresentation((CFDictionaryRef)window[(NSString *)kCGWindowBounds], &currentBounds);
 
@@ -105,8 +106,9 @@ int main(int argc, char **argv)
 			if (showList)
 			{
 				printf(
-					"\"%s\" size=%gx%g id=%d\n",
+					"\"%s\" layer=%d size=%gx%g id=%d\n",
 					currentWindowTitle.UTF8String,
+					currentWindowLayer.intValue,
 					currentBounds.size.width,
 					currentBounds.size.height,
 					[window[(NSString *)kCGWindowNumber] intValue]);
